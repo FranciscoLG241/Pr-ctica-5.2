@@ -40,8 +40,37 @@ La entrega tiene que cumplir las condiciones de entrega para poder ser calificad
 
 Se entregará el enlace al repositorio
 
-En el readme.md Identifica claramente cada punto. Contendrá el diagrama de clases refinado a diseño, explicando como has llegado a la solución. Ademas:
-a) Los elementos que te has encontrado en UML y que tienen mapeo sobre conceptos orientados a objetos.
-b) Explicación de la herramienta que has utilizado parra generar el diagrama UML, y si la has contrastado con otra y conclusiones de porque has elegido esa.
-c) Explicación sobre la conversión del diagrama UML al código, explicando las decisiones que has tomado. No tiene porque ser el codigo completo, pero si un esquema de lo que podría llegar a ser. 
-Conlleva la entrega de URL a repositorio: El código se entregará en este mismo repositorio github.
+# En el readme.md Identifica claramente cada punto. Contendrá el diagrama de clases refinado a diseño, explicando como has llegado a la solución. Ademas:
+
+- a) Los elementos que te has encontrado en UML y que tienen mapeo sobre conceptos orientados a objetos.
+Al hacer el diagrama de clases en UML, he encontrado varios conceptos que se relacionan directamente con la programación orientada a objetos:
+
+- Clases: Representan objetos en el programa, como Cliente, Pedido o Producto.
+- Atributos: Son las variables dentro de una clase, como nombre, precio o estadoPedido.
+- Métodos: Son las funciones que puede realizar una clase, como calcularTotal() en la clase Pedido.
+
+
+- b) Explicación de la herramienta que has utilizado parra generar el diagrama UML, y si la has contrastado con otra y conclusiones de porque has elegido esa.
+Para hacer el diagrama de clases he usado Lucidchart, ya que es una herramienta online muy sencilla de usar y permite hacer diagramas de forma rápida con una interfaz intuitiva.
+He elegido Lucidchart porque es fácil de usar, permite trabajar online sin necesidad de instalar nada y tiene muchas plantillas listas para usar.
+
+- c) Explicación sobre la conversión del diagrama UML al código, explicando las decisiones que has tomado. No tiene porque ser el codigo completo, pero si un esquema de lo que podría llegar a ser. 
+- Cada clase del diagrama UML se convierte en una clase en Kotlin.
+Clase Cliente con atributos id, nombre y correo.
+Clase Pedido con id, fecha y estado.
+
+- En código Kotlin:
+class Cliente(val id: Int, val nombre: String, val correo: String)
+class Pedido(val id: Int, val fecha: String, var estado: String)
+
+- Si una clase tiene una relación con otra (por ejemplo, un Cliente tiene varios Pedidos), se usa una lista en el código.
+class Cliente(val id: Int, val nombre: String, val correo: String) {
+    val pedidos = mutableListOf<Pedido>()  
+}
+
+- Si en UML una clase tiene una función (calcularTotal() en Pedido), se implementa en Kotlin:
+class Pedido(val id: Int, val fecha: String, var estado: String) {
+    fun calcularTotal(): Double {
+        return 100.0  
+    }
+}
